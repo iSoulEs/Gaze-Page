@@ -81,17 +81,21 @@ button:hover {
 .class-selector {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
+    margin-bottom: 18px;
 }
 
 .class-selector input[type="text"] {
     flex: 1;
-    margin-bottom: 0;
+    padding: 8px 10px;
+    font-size: 16px;
+    border: 1.5px solid #bbb;
+    border-radius: 6px;
 }
 
 .class-selector button {
-    padding: 5px 10px;
-    font-size: 18px;
+    padding: 6px 10px;
+    font-size: 16px;
     cursor: pointer;
 }
 
@@ -100,10 +104,10 @@ button:hover {
     background: transparent;
     border: none;
     color: red;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    padding: 0 5px;
+    padding: 0;
     line-height: 1;
     display: inline-block;
     border-radius: 4px;
@@ -116,8 +120,8 @@ button:hover {
 
 /* Imagen de clase seleccionada */
 #classImageSelected {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     object-fit: cover;
     border-radius: 4px;
     vertical-align: middle;
