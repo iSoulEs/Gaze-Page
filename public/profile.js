@@ -180,7 +180,7 @@ form.addEventListener('submit', async (e) => {
             openModalBtn.style.display = 'inline-block';
 
             // Redirigir a dashboard
-            window.location.href = 'dashboard.html';
+            window.location.href = 'dashboard';
         } else {
             message.style.color = 'red';
             message.textContent = result.error || 'Error desconocido';
