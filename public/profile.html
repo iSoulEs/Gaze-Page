@@ -14,13 +14,13 @@
         <label for="nickname">Nickname:</label>
         <input type="text" id="nickname" required />
 
-        <label for="classes">Clase:</label>
+        <label>Clase:</label>
         <div class="class-selector">
-            <input type="text" id="classes" readonly />
             <button type="button" id="openClassModal">+</button>
-            <button type="button" id="clearClass" style="display:none; color:red; font-weight:bold; margin-left:5px; cursor:pointer;">×</button>
-            <img id="classImageSelected" src="" alt="" style="display:none; width:40px; height:40px; margin-left:10px; border-radius:4px; vertical-align:middle;" />
+            <div id="selectedClass" class="selected-class" style="display: none;"></div>
         </div>
+
+        <input type="hidden" id="classes" />
 
         <button type="submit">Guardar</button>
     </form>

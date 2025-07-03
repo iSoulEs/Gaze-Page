@@ -1,13 +1,14 @@
 const form = document.getElementById('profileForm');
 const message = document.getElementById('message');
 const openModalBtn = document.getElementById('openClassModal');
-const clearClassBtn = document.getElementById('clearClass');           // nuevo botón "X"
-const classImageSelected = document.getElementById('classImageSelected'); // nueva imagen
+const clearClassBtn = document.getElementById('clearClass');
+const classImageSelected = document.getElementById('classImageSelected');
 const classModal = document.getElementById('classModal');
 const closeModalBtn = document.getElementById('closeClassModal');
 const classList = document.getElementById('classList');
 const classSearch = document.getElementById('classSearch');
 const classesInput = document.getElementById('classes');
+const classSelector = document.querySelector('.class-selector');
 
 // Listado de clases simuladas
 const classes = [
@@ -115,28 +116,37 @@ function loadClasses(filter) {
     });
 }
 
-// Función para seleccionar clase y actualizar UI
+// Seleccionar clase
 function selectClass(c) {
     classesInput.value = c.name;
-    classImageSelected.src = c.image;
-    classImageSelected.alt = c.name;
-    classImageSelected.style.display = 'inline-block';
 
-    openModalBtn.style.display = 'none';        // Ocultar "+"
-    clearClassBtn.style.display = 'inline-block'; // Mostrar "X"
+    // Crear contenedor seleccionado
+    const selectedDiv = document.createElement('div');
+    selectedDiv.className = 'selected-class';
+    selectedDiv.innerHTML = `
+        <img src="${c.image}" alt="${c.name}">
+        <span>${c.name}</span>
+        <button type="button" class="clear-btn">×</button>
+    `;
+
+    // Borrar cualquier selección previa
+    const prevSelected = document.querySelector('.selected-class');
+    if (prevSelected) prevSelected.remove();
+
+    // Agregar al DOM
+    classSelector.appendChild(selectedDiv);
+
+    // Cerrar modal y ocultar "+"
     classModal.style.display = 'none';
+    openModalBtn.style.display = 'none';
+
+    // Configurar X
+    selectedDiv.querySelector('.clear-btn').addEventListener('click', () => {
+        selectedDiv.remove();
+        classesInput.value = '';
+        openModalBtn.style.display = 'inline-block';
+    });
 }
-
-// Evento para limpiar la selección
-clearClassBtn.addEventListener('click', () => {
-    classesInput.value = '';
-    classImageSelected.src = '';
-    classImageSelected.alt = '';
-    classImageSelected.style.display = 'none';
-
-    clearClassBtn.style.display = 'none';        // Ocultar "X"
-    openModalBtn.style.display = 'inline-block';  // Mostrar "+"
-});
 
 // Guardar perfil
 form.addEventListener('submit', async (e) => {
@@ -162,8 +172,11 @@ form.addEventListener('submit', async (e) => {
             message.textContent = result.message;
             form.reset();
 
-            // Opcional: también limpiar la selección visual
-            clearClassBtn.click();
+            // Limpiar selección
+            const prevSelected = document.querySelector('.selected-class');
+            if (prevSelected) prevSelected.remove();
+            classesInput.value = '';
+            openModalBtn.style.display = 'inline-block';
         } else {
             message.style.color = 'red';
             message.textContent = result.error || 'Error desconocido';
