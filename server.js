@@ -3,16 +3,13 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware para parsear JSON (body-parser ya no es necesario con Express 4.16+)
 app.use(express.json());
-
-// Servir archivos estáticos desde la carpeta 'public'
 app.use(express.static('public'));
 
 // Simulación de base de datos en memoria
 let users = [];
 
-// Ruta de registro
+// Registro de usuario
 app.post('/register', (req, res) => {
     const { username, password, confirmPassword } = req.body;
 
@@ -32,9 +29,25 @@ app.post('/register', (req, res) => {
     res.status(201).json({ message: 'Registro exitoso' });
 });
 
-// Ruta base (opcional, sirve para pruebas)
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+// Login de usuario
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Faltan campos' });
+    }
+
+    const user = users.find(u => u.username === username);
+    if (!user) {
+        return res.status(400).json({ error: 'Usuario no encontrado' });
+    }
+
+    if (user.password !== password) {
+        return res.status(400).json({ error: 'Contraseña incorrecta' });
+    }
+
+    // Aquí podrías agregar generación de token o manejo de sesión
+    res.json({ message: 'Login exitoso' });
 });
 
 app.listen(PORT, () => {
