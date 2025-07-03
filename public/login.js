@@ -25,7 +25,7 @@ form.addEventListener('submit', async (e) => {
             form.reset();
 
             // Redirigir a completar perfil
-            window.location.href = '/profile.html';
+            window.location.href = '/profile';
         } else {
             message.style.color = 'red';
             message.textContent = result.error || 'Error desconocido';

@@ -1,27 +1,142 @@
 const form = document.getElementById('profileForm');
 const message = document.getElementById('message');
+const openModalBtn = document.getElementById('openClassModal');
+const classModal = document.getElementById('classModal');
+const closeModalBtn = document.getElementById('closeClassModal');
+const classList = document.getElementById('classList');
+const classSearch = document.getElementById('classSearch');
+const classesInput = document.getElementById('classes');
 
+// Listado de clases simuladas
+const classes = [
+    { name: 'Furious Blade (FB)', image: 'images/Furious%20Blade%20(FB).png' },
+    { name: 'Gembliss (GV)', image: 'images/Gembliss%20(GV).png' },
+    { name: 'Genesis (GN)', image: 'images/Genesis%20(GN).png' },
+    { name: 'Herrscher (HR)', image: 'images/Herrscher%20(HR).png' },
+    { name: 'Immortal (IM)', image: 'images/Immortal%20(IM).png' },
+    { name: 'Innocent (IN)', image: 'images/Innocent%20(IN).png' },
+    { name: 'Knight Emperor (KE)', image: 'images/Knight%20Emperor%20(KE).png' },
+    { name: 'Liberator (LB)', image: 'images/Liberator%20(LB).png' },
+    { name: 'Lord Azoth (LA)', image: 'images/Lord%20Azoth%20(LA).png' },
+    { name: 'Mad Paradox (MP)', image: 'images/Mad%20Paradox%20(MP).png' },
+    { name: 'Metamorphy (MtM)', image: 'images/Metamorphy%20(MtM).png' },
+    { name: 'Minerva (MN)', image: 'images/Minerva%20(MN).png' },
+    { name: 'Mischief (MC)', image: 'images/Mischief%20(MC).png' },
+    { name: 'Morpheus (MO)', image: 'images/Morpheus%20(MO).png' },
+    { name: 'Nisha Labyrinth (NL)', image: 'images/Nisha%20Labyrinth%20(NL).png' },
+    { name: 'Nova Imperator (NI)', image: 'images/Nova%20Imperator%20(NI).png' },
+    { name: 'Nyx Pieta (NP)', image: 'images/Nyx%20Pieta%20(NP).png' },
+    { name: 'Opferung (OP)', image: 'images/Opferung%20(OP).png' },
+    { name: 'Overmind (OM)', image: 'images/Overmind%20(OM).png' },
+    { name: 'Oz Sorcerer (Oz)', image: 'images/Oz%20Sorcerer%20(Oz).png' },
+    { name: 'Prime Operator (PO)', image: 'images/Prime%20Operator%20(PO).png' },
+    { name: 'Prophetess (PH)', image: 'images/Prophetess%20(PH).png' },
+    { name: 'Radiant Soul (RaS)', image: 'images/Radiant%20Soul%20(RaS).png' },
+    { name: 'Rage Hearts (RH)', image: 'images/Rage%20Hearts%20(RH).png' },
+    { name: 'Revenant (RV)', image: 'images/Revenant%20(RV).png' },
+    { name: 'Richter (RI)', image: 'images/Richter%20(RI).png' },
+    { name: 'Rune Master (RM)', image: 'images/Rune%20Master%20(RM).png' },
+    { name: 'Shakti (SH)', image: 'images/Shakti%20(SH).png' },
+    { name: 'Surya (SU)', image: 'images/Surya%20(SU).png' },
+    { name: 'Tempest Burster (TB)', image: 'images/Tempest%20Burster%20(TB).png' },
+    { name: 'Twilight (TW)', image: 'images/Twilight%20(TW).png' },
+    { name: 'Twins Picaro (TP)', image: 'images/Twins%20Picaro%20(TP).png' },
+    { name: 'Achlys (AC)', image: 'images/Achlys%20(AC).png' },
+    { name: 'Adrestia (AD)', image: 'images/Adrestia%20(AD).png' },
+    { name: 'Aether Sage (AeS)', image: 'images/Aether%20Sage%20(AeS).png' },
+    { name: 'Anemos (AN)', image: 'images/Anemos%20(AN).png' },
+    { name: 'Apsara (ApS)', image: 'images/Apsara%20(ApS).png' },
+    { name: 'Avarice (AV)', image: 'images/Avarice%20(AV).png' },
+    { name: 'Black Massacre (BlM)', image: 'images/Black%20Massacre%20(BlM).png' },
+    { name: 'Bloody Queen (BQ)', image: 'images/Bloody%20Queen%20(BQ).png' },
+    { name: 'Bluhen (BL)', image: 'images/Bluhen%20(BL).png' },
+    { name: 'Catastrophe (CaT)', image: 'images/Catastrophe%20(CaT).png' },
+    { name: 'Celestia (CL)', image: 'images/Celestia%20(CL).png' },
+    { name: 'Centurion (CeT)', image: 'images/Centurion%20(CeT).png' },
+    { name: 'Code Antithese (CA)', image: 'images/Code%20Antithese%20(CA).png' },
+    { name: 'Code Escencia (CE)', image: 'images/Code%20Escencia%20(CE).png' },
+    { name: 'Code Sariel (CS)', image: 'images/Code%20Sariel%20(CS).png' },
+    { name: 'Code Ultimate (CU)', image: 'images/Code%20Ultimate%20(CU).png' },
+    { name: 'Comet Crusader (CC)', image: 'images/Comet%20Crusader%20(CC).png' },
+    { name: 'Daybreaker (DAB)', image: 'images/Daybreaker%20(DAB).png' },
+    { name: 'Demersio (DEM)', image: 'images/Demersio%20(DEM).png' },
+    { name: 'Devi', image: 'images/Devi.png' },
+    { name: 'Diangelion (DI)', image: 'images/Diangelion%20(DI).png' },
+    { name: 'Dius Aer (DA)', image: 'images/Dius%20Aer%20(DA).png' },
+    { name: 'Dominator (Dom)', image: 'images/Dominator%20(Dom).png' },
+    { name: 'Doombringer (DB)', image: 'images/Doombringer%20(DB).png' },
+    { name: 'Empire Sword (ES)', image: 'images/Empire%20Sword%20(ES).png' },
+    { name: 'Eternity Winner (EtW)', image: 'images/Eternity%20Winner%20(EtW).png' },
+    { name: 'Fatal Phantom (FP)', image: 'images/Fatal%20Phantom%20(FP).png' },
+    { name: 'Flame Lord (FL)', image: 'images/Flame%20Lord%20(FL).png' }
+];
+
+
+// Mostrar modal
+openModalBtn.addEventListener('click', () => {
+    classModal.style.display = 'block';
+    loadClasses('');
+});
+
+// Cerrar modal
+closeModalBtn.addEventListener('click', () => {
+    classModal.style.display = 'none';
+});
+
+// Cerrar modal clickeando fuera
+window.addEventListener('click', (e) => {
+    if (e.target === classModal) {
+        classModal.style.display = 'none';
+    }
+});
+
+// Filtrar clases
+classSearch.addEventListener('input', (e) => {
+    loadClasses(e.target.value);
+});
+
+// Cargar listado de clases en el modal
+function loadClasses(filter) {
+    classList.innerHTML = '';
+
+    const filteredClasses = classes.filter(c =>
+        c.name.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    filteredClasses.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'class-item';
+        div.innerHTML = `<img src="${c.image}" alt="${c.name}"><span>${c.name}</span>`;
+        div.addEventListener('click', () => {
+            classesInput.value = c.name;
+            classModal.style.display = 'none';
+        });
+        classList.appendChild(div);
+    });
+}
+
+// Guardar perfil
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const data = {
+        username: localStorage.getItem('username'),
         nickname: form.nickname.value.trim(),
-        classes: form.classes.value.trim(),
+        classes: classesInput.value.trim(),
     };
 
     try {
-        const response = await fetch('/complete-profile', {
+        const response = await fetch('/profile', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            // Para saber qué usuario está enviando los datos, en un caso simple vamos a mandar el username guardado en localStorage (por ejemplo)
-            body: JSON.stringify({ ...data, username: localStorage.getItem('username') }),
+            body: JSON.stringify(data),
         });
 
         const result = await response.json();
 
         if (response.ok) {
             message.style.color = 'green';
-            message.textContent = 'Perfil actualizado con éxito';
+            message.textContent = result.message;
             form.reset();
         } else {
             message.style.color = 'red';

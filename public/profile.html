@@ -9,12 +9,16 @@
 <body>
 <div class="form-container">
     <h1>Completar Perfil</h1>
+
     <form id="profileForm">
         <label for="nickname">Nickname:</label>
-        <input type="text" id="nickname" name="nickname" required />
+        <input type="text" id="nickname" required />
 
-        <label for="classes">Clases:</label>
-        <input type="text" id="classes" name="classes" required />
+        <label for="classes">Clase:</label>
+        <div class="class-selector">
+            <input type="text" id="classes" readonly />
+            <button type="button" id="openClassModal">+</button>
+        </div>
 
         <button type="submit">Guardar</button>
     </form>
@@ -22,6 +26,18 @@
     <p id="message"></p>
 </div>
 
-<script src="complete-profile.js" defer></script>
+<!-- Modal de selección de clase -->
+<div id="classModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeClassModal">&times;</span>
+        <input type="text" id="classSearch" placeholder="Buscar clase..." />
+
+        <div id="classList">
+            <!-- Aquí se van a cargar las clases con JS -->
+        </div>
+    </div>
+</div>
+
+<script src="profile.js" defer></script>
 </body>
 </html>
