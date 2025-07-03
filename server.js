@@ -1,10 +1,13 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+// Middleware para parsear JSON (body-parser ya no es necesario con Express 4.16+)
+app.use(express.json());
+
+// Servir archivos estáticos desde la carpeta 'public'
+app.use(express.static('public'));
 
 // Simulación de base de datos en memoria
 let users = [];
@@ -29,9 +32,9 @@ app.post('/register', (req, res) => {
     res.status(201).json({ message: 'Registro exitoso' });
 });
 
-// Test server
+// Ruta base (opcional, sirve para pruebas)
 app.get('/', (req, res) => {
-    res.send('Servidor funcionando!');
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 app.listen(PORT, () => {
