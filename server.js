@@ -10,6 +10,8 @@ app.use(express.static('public'));
 // Simulación de base de datos en memoria
 let users = [];
 
+/* === RUTAS API === */
+
 // Registro de usuario
 app.post('/register', (req, res) => {
     const { username, password, confirmPassword } = req.body;
@@ -69,15 +71,29 @@ app.post('/profile', (req, res) => {
     res.json({ message: 'Perfil actualizado correctamente' });
 });
 
-// Rutas para servir los HTML sin extensión
+/* === RUTAS HTML === */
+
+// Página de bienvenida (opcional porque Express ya sirve index.html por defecto)
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Página de login
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+// Página de registro
+app.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'register.html'));
+});
+
+// Página de completar perfil
 app.get('/profile', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'profile.html'));
 });
 
+// Levantar servidor
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en puerto ${PORT}`);
 });
