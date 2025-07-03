@@ -274,22 +274,26 @@ form button[type="submit"] {
     border-radius: 4px;
 }
 
-/* Botón Cerrar Sesión en Dashboard */
-.logout-button {
+/* Botón Cerrar Sesión (Dashboard) */
+.logout-btn {
     position: fixed;
     top: 20px;
     right: 20px;
     background-color: #e53935;
     color: white;
     border: none;
+    padding: 6px 12px;
     border-radius: 6px;
-    padding: 10px 16px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    z-index: 100;
+    z-index: 1000;
+    display: inline-block;
+    white-space: nowrap;
 }
 
-.logout-button:hover {
-    background-color: #b71c1c;
+.logout-btn:hover {
+    background-color: #ab000d;
 }
+

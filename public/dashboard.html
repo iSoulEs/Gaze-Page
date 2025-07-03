@@ -5,40 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css" />
-    <style>
-        .logout-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #e53935;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            z-index: 1000;
-        }
-        .logout-btn:hover {
-            background-color: #ab000d;
-        }
-    </style>
 </head>
 <body>
+
 <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
 
 <h1>Bienvenido al Dashboard</h1>
-<!-- Aquí tu contenido -->
+<!-- Acá tu contenido -->
 
-<script>
-    const logoutBtn = document.getElementById('logoutBtn');
-    logoutBtn.addEventListener('click', () => {
-        // Limpiar datos de sesión
-        localStorage.removeItem('username');
-        // Redirigir a la página principal
-        window.location.href = '/';
-    });
-</script>
+<script src="dashboard.js" defer></script>
+
 </body>
 </html>
