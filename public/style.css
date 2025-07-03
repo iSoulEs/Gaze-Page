@@ -81,13 +81,47 @@ button:hover {
 .class-selector {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+}
+
+.class-selector input[type="text"] {
+    flex: 1;
+    margin-bottom: 0;
 }
 
 .class-selector button {
     padding: 5px 10px;
     font-size: 18px;
     cursor: pointer;
+}
+
+/* Botón X (clear) */
+#clearClass {
+    background: transparent;
+    border: none;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+    display: inline-block;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+#clearClass:hover {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+/* Imagen de clase seleccionada */
+#classImageSelected {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    vertical-align: middle;
+    display: inline-block;
 }
 
 /* Modal */

@@ -1,6 +1,8 @@
 const form = document.getElementById('profileForm');
 const message = document.getElementById('message');
 const openModalBtn = document.getElementById('openClassModal');
+const clearClassBtn = document.getElementById('clearClass');           // nuevo botón "X"
+const classImageSelected = document.getElementById('classImageSelected'); // nueva imagen
 const classModal = document.getElementById('classModal');
 const closeModalBtn = document.getElementById('closeClassModal');
 const classList = document.getElementById('classList');
@@ -71,7 +73,6 @@ const classes = [
     { name: 'Flame Lord (FL)', image: 'images/Flame%20Lord%20(FL).png' }
 ];
 
-
 // Mostrar modal
 openModalBtn.addEventListener('click', () => {
     classModal.style.display = 'block';
@@ -108,12 +109,34 @@ function loadClasses(filter) {
         div.className = 'class-item';
         div.innerHTML = `<img src="${c.image}" alt="${c.name}"><span>${c.name}</span>`;
         div.addEventListener('click', () => {
-            classesInput.value = c.name;
-            classModal.style.display = 'none';
+            selectClass(c);
         });
         classList.appendChild(div);
     });
 }
+
+// Función para seleccionar clase y actualizar UI
+function selectClass(c) {
+    classesInput.value = c.name;
+    classImageSelected.src = c.image;
+    classImageSelected.alt = c.name;
+    classImageSelected.style.display = 'inline-block';
+
+    openModalBtn.style.display = 'none';        // Ocultar "+"
+    clearClassBtn.style.display = 'inline-block'; // Mostrar "X"
+    classModal.style.display = 'none';
+}
+
+// Evento para limpiar la selección
+clearClassBtn.addEventListener('click', () => {
+    classesInput.value = '';
+    classImageSelected.src = '';
+    classImageSelected.alt = '';
+    classImageSelected.style.display = 'none';
+
+    clearClassBtn.style.display = 'none';        // Ocultar "X"
+    openModalBtn.style.display = 'inline-block';  // Mostrar "+"
+});
 
 // Guardar perfil
 form.addEventListener('submit', async (e) => {
@@ -138,6 +161,9 @@ form.addEventListener('submit', async (e) => {
             message.style.color = 'green';
             message.textContent = result.message;
             form.reset();
+
+            // Opcional: también limpiar la selección visual
+            clearClassBtn.click();
         } else {
             message.style.color = 'red';
             message.textContent = result.error || 'Error desconocido';
