@@ -149,6 +149,7 @@ function selectClass(c) {
 }
 
 // Guardar perfil
+// Guardar perfil
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -177,6 +178,9 @@ form.addEventListener('submit', async (e) => {
             if (prevSelected) prevSelected.remove();
             classesInput.value = '';
             openModalBtn.style.display = 'inline-block';
+
+            // Redirigir a dashboard
+            window.location.href = 'dashboard.html';
         } else {
             message.style.color = 'red';
             message.textContent = result.error || 'Error desconocido';
