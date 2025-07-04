@@ -1,16 +1,25 @@
 /* ============================= */
-/*           GENERAL             */
+/*           RESET & GENERAL     */
 /* ============================= */
 
-body {
+* {
+    box-sizing: border-box;
+}
+
+html, body {
     margin: 0;
+    padding: 0;
+    overflow-x: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+}
+
+body {
     background: url('images/backgr.png') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    color: #fff;
 }
 
 /* ============================= */
@@ -18,14 +27,11 @@ body {
 /* ============================= */
 
 header {
-    width: 100%;
-    backdrop-filter: blur(14px) saturate(80%);
-    -webkit-backdrop-filter: blur(14px) saturate(80%);
-    background-color: rgba(0, 0, 0, 0.5); /* negro semi-transparente */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px 0 10px;
     text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    padding: 20px 0 10px;
+    background: rgba(0, 0, 0, 0.5); /* línea oscura semitransparente */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
 
 header h1 {
@@ -57,18 +63,17 @@ nav a:hover {
 /* ============================= */
 
 .login-box {
-    backdrop-filter: blur(14px) saturate(80%);
-    -webkit-backdrop-filter: blur(14px) saturate(80%);
-    background-color: rgba(0, 0, 0, 0.5); /* negro semi-transparente */
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 30px 40px;
     max-width: 400px;
     width: 90%;
     text-align: center;
     margin: 50px auto;
-    box-shadow: 0 0 20px rgba(0,0,0,0.8);
-    color: #eee; /* texto claro */
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
 .login-box h2 {
@@ -144,6 +149,8 @@ footer {
     font-size: 14px;
     color: #ccc;
     text-shadow: 0 0 5px #000;
+    background: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* ============================= */
@@ -185,7 +192,6 @@ footer {
     margin-bottom: 10px;
 }
 
-/* Botón + para selección de clase */
 .class-selector button {
     height: 36px;
     font-size: 20px;
@@ -195,7 +201,6 @@ footer {
     border-radius: 6px;
 }
 
-/* Contenedor clase seleccionada */
 .selected-class {
     display: flex;
     align-items: center;
@@ -206,7 +211,6 @@ footer {
     margin-bottom: 15px;
 }
 
-/* Imagen clase seleccionada */
 .selected-class img {
     width: 36px;
     height: 36px;
@@ -214,13 +218,11 @@ footer {
     object-fit: cover;
 }
 
-/* Nombre clase seleccionada */
 .selected-class span {
     font-weight: 600;
     color: #333;
 }
 
-/* Botón X (clear) */
 .selected-class button {
     background: transparent;
     border: none;
@@ -231,7 +233,6 @@ footer {
     line-height: 1;
 }
 
-/* Separación entre selector y botón guardar */
 form button[type="submit"] {
     margin-top: 15px;
 }
@@ -294,18 +295,18 @@ form button[type="submit"] {
     border-radius: 4px;
 }
 
-/* Agregado para que el texto de los títulos de las clases en el modal sea negro */
 .class-item span {
     color: black;
 }
 
-/* Para que el texto del input de búsqueda sea negro */
 #classSearch {
     color: black;
 }
 
 /* ============================= */
-/* Botón Cerrar Sesión (Dashboard) */
+/*        BOTÓN CERRAR SESIÓN    */
+/* ============================= */
+
 .logout-btn {
     position: fixed;
     top: 20px;
