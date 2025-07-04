@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Completar Perfil</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>GAZE - Completar Perfil</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="form-container">
-    <h1>Completar Perfil</h1>
+
+<header>
+    <h1>GAZE</h1>
+    <nav>
+        <a href="/">Inicio</a>
+        <a href="/register">Registro</a>
+        <a href="/login">Iniciar sesión</a>
+    </nav>
+</header>
+
+<div class="login-box">
+    <h2>Completar Perfil</h2>
 
     <form id="profileForm">
         <label for="nickname">Nickname:</label>
-        <input type="text" id="nickname" required />
+        <input type="text" id="nickname" required>
 
         <label>Clase:</label>
         <div class="class-selector">
@@ -20,7 +29,7 @@
             <div id="selectedClass" class="selected-class" style="display: none;"></div>
         </div>
 
-        <input type="hidden" id="classes" />
+        <input type="hidden" id="classes">
 
         <button type="submit">Guardar</button>
     </form>
@@ -28,15 +37,16 @@
     <p id="message"></p>
 </div>
 
+<footer>
+    © 2025 GAZE. Todos los derechos reservados.
+</footer>
+
 <!-- Modal de selección de clase -->
 <div id="classModal" class="modal">
     <div class="modal-content">
         <span class="close" id="closeClassModal">&times;</span>
-        <input type="text" id="classSearch" placeholder="Buscar clase..." />
-
-        <div id="classList">
-            <!-- Aquí se van a cargar las clases con JS -->
-        </div>
+        <input type="text" id="classSearch" placeholder="Buscar clase...">
+        <div id="classList"></div>
     </div>
 </div>
 
