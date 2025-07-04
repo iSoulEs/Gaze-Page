@@ -287,6 +287,16 @@ form button[type="submit"] {
     border-radius: 4px;
 }
 
+/* Agregado para que el texto de los títulos de las clases en el modal sea negro */
+.class-item span {
+    color: black;
+}
+
+/* Para que el texto del input de búsqueda sea negro */
+#classSearch {
+    color: black;
+}
+
 /* ============================= */
 /* Botón Cerrar Sesión (Dashboard) */
 .logout-btn {
